@@ -6,21 +6,25 @@
 number = int(input("Enter an integer: "))
 found = False
 root = 0
+pwr = 1
 
-while root ** 5 < abs(number):
-    root += 1 
-    for i in range(1, 5+1):
-        if root ** i == abs(number):
-            pwr = i
-            found = True
-            break
-            
-if not found:
-    print("No pair of integers (root, pwr) exists for this number.")
+if number == 0:
+    print(f"Root = {0}")
 else:
-    if number < 0 and pwr != 2 and pwr != 4:
-        root = str("-") + str(root)
-    print(f"Root = {root}, Power = {pwr}")
+    while root ** pwr < abs(number) and not found:
+        root += 1 
+        for i in range(1, 6):
+            if root ** i == abs(number):
+                pwr = i
+                found = True
+                break
+            
+    if not found and number != 0:
+        print("No pair of integers (root, pwr) exists for this number.")
+    else:
+        if number < 0 and pwr % 2 != 0:
+            root *= -1
+        print(f"Root = {root}, Power = {pwr}")
 
     
     
